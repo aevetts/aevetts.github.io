@@ -4,6 +4,8 @@ source "https://rubygems.org"
 # To list current versions: `bundle exec github-pages versions`
 # Check github versions: https://pages.github.com/versions/
 gem "github-pages", group: :jekyll_plugins
+gem "base64"
+gem "bigdecimal"
 
 group :jekyll_plugins do
   gem 'jekyll-feed'
@@ -20,7 +22,7 @@ install_if -> { RUBY_PLATFORM =~ %r!mingw|mswin|java! } do
 end
 
 # Performance-booster for watching directories on Windows
-gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
+#gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 
 
 
