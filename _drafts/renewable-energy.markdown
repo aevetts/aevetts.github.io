@@ -10,19 +10,25 @@ Intro
 Something about source and methodology
 
 Questions
-1. How has renewable energy generationg changed in Scotland over the last 10 years?
+1. How has renewable energy generation changed in Scotland over the last 10 years?
 2. What is the biggest renewable energy source?
 3. How does the renewable energy generated in each Local Authority area differ?
 
 Basic plot: RE consumption vs generation over 10 years (omit percentage plot)
 
+![Renewable energy generation](/images/energy/National1.png)
+
 Energy split (redo plot with bucketed small things)
+
+![Energy split](/images/energy/Types1.png)
 
     Offshore wind drop-off?
 
-Differing generation between LAs. Better to split countyside vs city?
+Differing generation between LAs. Try to do urban/rural. Heat map of generation per LA?
 
-Net usage by region. Rounding/multiples etc. 
+Net usage by region. Rounding/multiples etc. 'Exporters/Importers'
+
+
 
 Net usage by region by area...
 ...and by population. Here, probably want mean over the 10 years? Or just 2023.
