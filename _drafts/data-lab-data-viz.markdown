@@ -27,10 +27,10 @@ We could then plot, for example, a heatmap of total per capita co-benefits, or a
 
 ![Fife heatmaps](/images/DLDVC/Fife.png)
 
-It would be reasonable to ask whether the projected co-benefits are correlated with socio-economic bracket. From the following scatter plots we can see that there is some relationship, but it is not a straightforward positive correlation. ![Scattor plots](/images/DLDVC/scatters.png)
+It would be reasonable to ask whether the projected co-benefits are correlated with socio-economic bracket. From the following scatter plots we can see that there is some relationship, but it is not a straightforward positive correlation. ![Scatter plots](/images/DLDVC/scatters.png)
 The higher socio-economic bracket an individual is in, the higher the ceiling on their total co-benefit. Note that the minimum possible co-benefit is almost uniform across SIMD ranks. Disaggregating across the 11 different co-benefits is also interesting. For example, in Fife, the dampness co-benefit (that is, benefits from reductions in damp housing, reflected in improved health and wellbeing) seems to be negatively correlated with SIMD rank. This correlation disappears at the Scotland level. Regional effects like this could certainly be interesting to explore more.
 
-You can see the code and play around with it yourself (perhaps even improve it...) via binder by clicking [here](https://mybinder.org/v2/gh/aevetts/notebooks/HEAD?urlpath=%2Fdoc%2Ftree%2FDLDVC.ipynb).
+To experiment with our code yourself, launch the binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aevetts/notebooks/HEAD?urlpath=%2Fdoc%2Ftree%2FDLDVC.ipynb)
 
 ### RNIC
 
@@ -38,7 +38,7 @@ We wanted some way to combine the total per-capita co-benefit value with the SIM
 
 $$\mathrm{RNIC} = \log\left(\frac{\text{total per-capita co-benefit}}{\text{SIMD rank}}\right).$$
 
-The log was added simply to make the values fall closer to a linear function so that they are more easily comparable, especially on heatmaps. It should be emphasised that RNIC is purely qualitative and not necessarily backed up by strong theory. Nevertheless, it allows us to compare very different regions of Scotland, and what co-benefits climate action might bring. By way of an example, here are RNIC heatmaps for Glasgow and neighbouring North Lanarkshire, indicating that even allowing for differing socio-economic conditions, areas of Glasgow stand to benefit more from climate action. To read a more thorough discussion, see our [poster](/images/DLDVC.poster.pdf)!
+The log was added simply to make the values fall closer to a linear function so that they are more easily comparable, especially on heatmaps. It should be emphasised that RNIC is purely qualitative and not necessarily backed up by strong theory. Nevertheless, it allows us to compare very different regions of Scotland, and what co-benefits climate action might bring. By way of an example, here are RNIC heatmaps for Glasgow and neighbouring North Lanarkshire, indicating that even allowing for differing socio-economic conditions, areas of Glasgow stand to benefit more from climate action. To read a more thorough discussion, see our [poster](/images/DLDVC/poster.pdf)!
 
 ![RNIC plots](/images/DLDVC/GlasgowLanark.png)
 
