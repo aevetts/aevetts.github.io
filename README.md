@@ -1,1 +1,1 @@
-This is the repository for my blog, whose aim is intended to be to document my learning progress with data analysis.
+This is the repository for my blog, whose aim is to document my learning progress with data analysis and data science, amongst other things.
