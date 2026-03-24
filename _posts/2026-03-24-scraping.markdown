@@ -1,0 +1,101 @@
+---
+layout: post
+title:  "Web-scraping with Playwright and BeautifulSoup"
+categories: jekyll update
+---
+
+
+<script type="text/javascript" async
+     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+
+
+
+
+
+In today's post, I'll describe my experiments with scraping car price data to train my neural network.
+
+
+### The task: getting up-to-date data
+My car price [neural network]({% post_url 2026-02-18-make-model %}) is currently trained on some historical data that a kind person has uploaded to [Kaggle](https://www.kaggle.com/datasets/guanhaopeng/uk-used-car-market/data). This data is from 2022 so naturally isn't going to accurately reflect today's prices. To get up-to-date data, there are a few options. 
+
+The passive option is to find a more recent upload on Kaggle, or a similar site. That's fine, but isn't going to teach me anything. 
+
+The hands-on option is to do my own data scraping, building a repeatable process that I can re-run periodically to keep the training data relevant.
+
+The elegant option is to modify the neural network methodology. The model is trained to predict today's price, based on the year of registration (and mileage, and other features). A different approach would be to replace year with age, and make the assumption that an $$n$$-year-old car in year $$x$$ will cost the same as an $$n$$-year-old car in year $$y$$ (modulo inflation perhaps), all else being equal. This would be closer to trying to learn the 'depreciation curve' for each model of car.
+
+I decided to give the hands-on option a try. I've never done any web-scraping before so it sounds like a fun exercise. Maybe I'll try the elegant option later and compare the results.
+
+
+
+### Data sources
+There are loads of different sites that list used cars for sale.
+
+#### Autotrader
+I reckon this is the most well-known site for buying and selling. I made a half-hearted attempt at scraping car-prices, but I struggledd to get past the anti-bot protection. This agrees with other people's reported experiences. There is an API but it seems to be intended for business partners, not just a learner hacking away. In any case, the point of this particular exercise is scraping, not API-ing. 
+
+#### ebay 
+eBay has lots of used car data but the search result page only displays the 'title' of the car and the price. To find the full feature info, you need to click through to open up the ad.
+
+![eBay search result tile](/images/cars/eBay.png)
+
+#### gumtree 
+Gumtree seems to have less rigorous bot-detection and it displays the search results as tiles containing make, model, year, mileage and fuel. So I can build a scraper that works! But gumtree will only show 50 pages = 1500 results per search, even when there are many more cars that fit the search. I could solve this by iterating many searches (1500 fiestas, 1500 golfs, etc) but this is a bit tedious, and I'm lazy, so we move on to the next option.
+
+#### cazoo 
+I'd never seen cazoo before, but its another ad aggregator, seemingly all retailers rather than private sellers. It displays search results as wee tiles like gumtree, with all the data I need. Furthermore, it'll let you keep 'next page'-ing through all the search results (and it has *a lot* of cars). Luckily enough, I seem to be able to circumvent the anti-bot measures, and scrape as much data as I can be bothered waiting for.
+
+![cazoo search result tile](/images/cars/cazoo.png)
+
+
+### Scraping with Playwright and BeautifulSoup
+Guided by a bit of reading around, and helpful Gemini prompts, I'm using Playwright. This is a Python tool that opens up a browser and navigates to where you want to go. Once I'm at the right page, I use BeautifulSoup to parse the 'soup' of html and extract the car data that I need. I just needed to inspect the html on the page and stare at the tags for a while to work out what the various elements were called. The syntax for opening pages and parsing the html is all very straightforward. And it's routine to build loops to cycle through all the search result pages, and the results on each page.
+
+The full code is available on [GitHub](https://github.com/aevetts/cars/blob/main/dataScraping/cazoo2.py). But, for example, here is the BeautifulSoup function that finds the search results on the page (`listings`), and for each result pulls the title (which is the make and model), price, year, mileage, and fuel, compiles them into a dictionary, and appends them to a list. 
+
+```python
+def extract_data(html_content):
+    soup = BeautifulSoup(html_content, 'html.parser')
+    listings = soup.find_all('li', {'data-testid': 'search-result'})
+    data = []
+    for item in listings:
+        try:
+            data.append({
+                'Title': item.find('p', {'data-testid': 'vehicle-title'}).get_text(strip=True),
+                'Price': item.find('span', {'class': 'c-text-lg-medium lg:c-heading-xl'}).get_text(strip=True),
+                'Year': item.find('div', {'data-testid': 'year-badge'}).get_text(strip=True),
+                'Miles': item.find('div', {'data-testid': 'mileage-badge'}).get_text(strip=True),
+                'Fuel': item.find('div', {'data-testid': 'fuel-badge'}).get_text(strip=True)
+            })
+        except: continue
+    return data
+```
+
+#### Anti-anti-bot measures
+The main challenge is that in this day and age where data is currency, it is guarded jealously by websites. If the page suspects you are a bot, it is likely to deny you access, or even flag your IP address and ban you completely.
+Some examples of steps I use to get around this include
+1. opening a browser window properly, not just a 'headless' browser, and making sure the 'user agent' is plausible (e.g. OS consistent with browser);
+1. pausing for random times before moving to the next page, and even scrolling on the page by a random amount;
+1. refreshing the 'context' which clears cache and cookies, and rotating the user agent, so that the page doesn't see many, many requests from the same source;
+1. at the more extreme end, rotating through different proxies to completely mask that you're really the same person. 
+
+This is all a sort-of iterative guessing process. When the website is kicking you out, the reason isn't always obvious. I was initially using rotating proxies for disguise, but I ran out of bandwidth on my free proxies. For financial management reasons <small>i.e. I'm stingy</small> I didn't upgrade to a paid plan and instead just tried without proxies. It turned out that, for cazoo at least, this wasn't a problem! In the end, the data is dumped into a CSV so it can be cleaned and formatted and fed into the hungry hungry ~~hippo~~ neural network.
+
+
+#### Asyncio
+One more thing to say about the code is that it uses `async` and `await` from the `asyncio` library to facilitate running concurrent tasks. When scraping, the vast majority of time is spent waiting for websites to load. This library lets Python perform tasks while waiting for responses, where this makes logical sense. I'm very much relying on Gemini to help me out with the syntax here, and this step also allows Python itself to help out with scheduling and therefore speeding up the process.
+
+
+
+### Conclusion
+
+<!-- 'Anonymised' version of the non-proxy code on github. -->
+
+My main lesson is that navigating a webpage and extracting elements of the html is very straightforward with Playwright and BeautifulSoup, but the challenge comes when scraping in bulk and trying not to give yourself away as a bot. To *level-up* to *pro-scraper* <small>sorry, I was trying something, it won't happen again</small>, I should try using scrapy to make a crawler to effeciently access individual adverts, like the eBay situation.
+
+If I gave it more time, I could incrementally add gumtree data to the training set, 1500 rows at a time. This would add more private seller datapoints to the predominantly retail cazoo data. It might also be worth adding a retail/private flag as a datapoint (one-hot encoding would be fine) and as a toggle on the user interface. My expectation would be that retail is always slightly more expensive than private.
+
+I'll be updating the app with a newly trained model shortly, just as soon as I've cleaned the cazoo data.
+
