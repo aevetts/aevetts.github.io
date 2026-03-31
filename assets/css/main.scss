@@ -1,0 +1,59 @@
+---
+# Two dashes here are vital!
+---
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main lib
+
+/* Adjusting the main body text size */
+.page__content, 
+.archive,
+.entries-layout {
+  p, li, blockquote {
+    font-size: 0.8rem !important; 
+    line-height: 1.4;
+  }
+}
+
+/* Target the code block container */
+.highlight {
+  font-size: 0.7rem;      /* Slightly smaller than body text for better fit */
+  line-height: 1.3;     /* Tighten up code lines so they don't look 'gappy' */
+  margin-bottom: 1.5em;  /* Space it out from the next paragraph */
+}
+
+/* Ensure the font inside the block follows the rules */
+.highlight pre {
+  margin: 0;             /* Remove default margins from the pre tag */
+  padding: 10px;         /* Give the code some breathing room from the edge */
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+/* Optional: Style the inline code (single backticks) to match */
+p > code, li > code {
+  font-size: 1.0em;
+  padding: 0.2em 0.4em;
+  background-color: rgba(27, 31, 35, 0.05); /* Very subtle grey tint */
+  border-radius: 3px;
+}
+
+
+
+// // avatar picture stuff
+// /* Force the Author Avatar to be a perfect circle */
+// .author__avatar img {
+//   width: 200px;           /* Or whatever size you prefer */
+//   height: 200px;          /* Height must match width for a circle */
+//   object-fit: cover;      /* Prevents 'squishing' if your original image isn't square */
+//   border-radius: 50% !important; 
+//   border: 1px solid #eee; /* Optional: adds a thin clean border */
+// }
+// Doesn't seem to work?
+
+
+/* Hide any link in the footer that contains 'feed.xml' or the RSS icon */
+.page__footer-follow .social-icons a[href*="feed.xml"],
+.page__footer-follow .social-icons .fa-rss-square,
+.page__footer-follow .social-icons .fa-rss {
+  display: none !important;
+}

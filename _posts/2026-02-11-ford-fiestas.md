@@ -1,7 +1,7 @@
 ---
-layout: post
+layout: single
 title:  "How much is this Ford Fiesta worth?"
-categories: jekyll update
+permalink: /fiestas/
 ---
 
 
@@ -30,7 +30,7 @@ Once I had the data in a pandas DataFrame, there was a wee bit of cleaning to do
 
 After splitting off 20% of the rows to use for testing the model, I explored the relationships between price and my chosen features. As can be seen in the following scatterplots, there are clearly (non-linear) relationships between mileage and price, and between year and price. Engine volume is a bit less clear, but it doesn't seem to be random. It did make me think about whether this feature should really be categorical. Something to play with in the future. For now, we'll keep it numerical, just in case we need to predict the price of a Fiesta whose engine volume is $$\sqrt{2}$$ litres!
 
-![Feature relationships](/images/cars/fiestasscatter.png)
+![Feature relationships]({{ "/images/cars/fiestasscatter.png" | relative_url }})
 
 
 ### Training the model
@@ -39,19 +39,19 @@ I experimented with simple neural networks with different numbers of hidden laye
 
 Here are some charts describing the results of training models with 0, 1, 3, 5 hidden layers respectively. On the left we have the changing loss function throughout the model's training, with the orange line marking validation against 20% of the data. We then look at how the model fared when predicting the prices of the cars it was not trained on. First, we plot predicted price against actual price, then residuals (i.e. the difference between the prediction and the true price) against actual price, and finally the distribution of residuals. We also output the overall mean squared error (MSE). I'm not sure how useful this single figure is, but it does give a way of comparing the models' performance.
 
-![linear model](/images/cars/blog1_linear.png)
+![linear model]({{ "/images/cars/blog1_linear.png" | relative_url }})
 
 Without hidden layers, we are essentially trying to fit a single linear (well, almost) function, which does not go well (unsurprisingly given the scatterplots above). This model under-prices lots of cars by a significant amount. 
 
-![linear model](/images/cars/blog1_1hl.png)
+![1 hidden layer]({{ "/images/cars/blog1_1hl.png" | relative_url }})
 
 With just 1 hidden layer we are already getting something much more convincing. The fact that there isn't a pronounced fan shape on the Residuals vs Predicted chart suggests that there is not much loss of accuracy as the price increases. The Distribution of Residuals is pretty tall and thin, meaning they're mostly small, and its pretty symmetric about zero, so the model isn't biased towards under- or over-pricing. 
 
-![linear model](/images/cars/blog1_3hl.png)
+![3 hidden layers]({{ "/images/cars/blog1_3hl.png" | relative_url }})
 
 With 3 hidden layers, the general shape is unchanged, but we seem to have a bit of a bias for under-pricing.
 
-![linear model](/images/cars/blog1_5hl.png)
+![5 hidden layers]({{ "/images/cars/blog1_5hl.png" | relative_url }})
 
 With 5 hidden layers, the bias has disappeared. However, it doesn't seem to be significantly better at predicting the price than just a single hidden layer, and the MSE is much larger. Interestingly, in a previous run of the same models, the model with 3 hidden layers was the best performer. It seems likely that the specifics of the number of layers is probably not significant here, and just having a decent number of nodes pretty much finds everything that can be found from these 3 training features. For more accuracy, we probably want to incorporate other features.
 

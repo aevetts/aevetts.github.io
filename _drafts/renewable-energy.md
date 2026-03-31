@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: single
 title:  "Renewable Energy in Scotland"
 date:   2025-06-30 16:24:36 +0100
 categories: jekyll update

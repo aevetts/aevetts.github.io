@@ -1,7 +1,7 @@
 ---
-layout: post
+layout: single
 title:  "Fun with Streamlit"
-categories: jekyll update
+permalink: /streamlit/
 ---
 
 
@@ -16,7 +16,7 @@ categories: jekyll update
 <!-- ### Intro -->
 In the last wee while I've been working on setting up a proper user interface for my [car price predictor](https://aevetts.github.io/jekyll/update/2026/02/18/make-model.html), using [Streamlit](https://streamlit.io/). In this post I'll chat a bit about Streamlit, classes and objects, and the structure of my code. To just see the app already, click [here](https://alexscarpricepredictor.streamlit.app/). Read on to find out what's happening begin the scenes.
 
-![app](/images/cars/appscreenshot.png)
+![app]({{ "/images/cars/appscreenshot.png" | relative_url }})
 
 ### Streamlit
 Streamlit is a python library that functions as an app framework. It lets you create input widgets, charts, representations of pandas dataframes, you name it, just by declaring variables. And of course you can do all the usual python stuff in the same file. The workflow is simple. You can start by, as their website puts it, "sprinkling Streamlit commands into a python script". Then you can run the page locally with `streamlit run script.py`. Every time something changes (either the file is updated and saved, or a user interacts with some functionality on the page), the whole script is rerun. To deal with slower processes, you can cache functionality to stop it rerunning all the time. This all means its very easy to build your app and watch the changes as you go along. When it comes to deploying it publically, an easy option is via [Streamlit Community Cloud](https://streamlit.io/cloud). You just point it at a github repo and it will build it for you. 
@@ -34,7 +34,7 @@ Straightforwardly, this could be in the form of a dictionary whose keys are the 
 
 ### The encoder: classes and objects
 
-Both the app and the code that trains the neural network need to be able to encode categorical features as integers, for training and forward propagation, respectively (see my [post](https://aevetts.github.io/jekyll/update/2026/02/18/make-model.html) on embeddings). As with the dropdown data above, these encodings might change with updated training data and it is obviously crucial that the model and the app use the same encodings. So we want to create the encoder once and save it somewhere that both files can use it. This is an opportunity to explore some object-oriented programming ideas.
+Both the app and the code that trains the neural network need to be able to encode categorical features as integers, for training and forward propagation, respectively (see my [post]({% post_url 2026-02-18-make-model %}) on embeddings). As with the dropdown data above, these encodings might change with updated training data and it is obviously crucial that the model and the app use the same encodings. So we want to create the encoder once and save it somewhere that both files can use it. This is an opportunity to explore some object-oriented programming ideas.
 
 A *class* is like a template. An *object* is an instance of a class, following that general template. Sticking with cars, we could take "Ford Fiesta" as a class, with individual cars (perhaps identified by registration number) as objects in that class. A class might have methods, perhaps `.get_colour()` returns the colour of the car, which would be an *instance variable*, a variable that takes different values for different objects in that class. 
 
@@ -47,7 +47,7 @@ We're starting to see a proliferation of different saved files. Continuing in th
 
 <!-- Here is a visualisation of the various files and their dependencies.  -->
 
-![Diagram](/images/cars/schematic.png)
+![Diagram]({{ "/images/cars/schematic.png" | relative_url }})
 
 
 

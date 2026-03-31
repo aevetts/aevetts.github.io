@@ -1,7 +1,7 @@
 ---
-layout: post
+layout: single
 title:  "Climate Action: Co-benefits and Deprivation"
-categories: jekyll update
+permalink: /datalabdataviz/
 ---
 
 
@@ -16,7 +16,7 @@ Last month, the Data Lab closed submissions for their latest [Data Visualisation
 
 *Co-benefits* are essentially side-effects of action to reduce greenhouse gas emissions. For example, reducing fuel use by reducing car travel might "accidentally" increase physical activity (from, say, cycling to work). Or a move towards more plant-based diets for environmental reasons may also result in a positive impact on health. On the other hand, some co-benefits are not benefits at all. For example, more active travel and public transport might result in longer commute times. The Co-benefits Atlas is built on modelling from the University of Edinburgh, assuming climate action recommended by the [Climate Change Committee](https://www.theccc.org.uk/) in its Seventh Carbon Budget. Co-benefits are converted into a monetary value across 45,000 geographical areas covering the whole of the UK. This value is split between 11 different co-benefits (including physical activity increase, dietary improvements, road repairs impact...). The UK Co-benefits Atlas [site](https://ukcobenefitsatlas.net/) already has some pretty comprehensive interactive visualisations where users can play around with different areas and combinations of co-benefits.
 
-[Luigi Creazzo](https://www.linkedin.com/in/luigicreazzo/) (my Data Lab mentor) and I collaborated on a joint entry to the competition. Our initial broad idea was to see if we could connect co-benefits related to travel and green space with local government active travel plans and similar initiatives. In particular, we aimed to focus on Fife and Edinburgh as areas we are both familiar with. As it happens, we have both moved house recently, and in the course of house-hunting we've used the [Scottish Index of Multiple Deprivation](https://simd.scot), a useful resource that combines socio-economic measures including figures related to income, housing, crime into a single deprivation index. Since both this and the co-benefits data is available at the level of quite small areas, we decided to incorporate the SIMD data to gain insight into how co-benefits are distributed across socio-economic brackets. Perhaps climate-change mitigation actions could help level the playing field. Or will they magnify existing inequalities? To skip to our final entry, click [here](/images/DLDVC/poster.pdf).
+[Luigi Creazzo](https://www.linkedin.com/in/luigicreazzo/) (my Data Lab mentor) and I collaborated on a joint entry to the competition. Our initial broad idea was to see if we could connect co-benefits related to travel and green space with local government active travel plans and similar initiatives. In particular, we aimed to focus on Fife and Edinburgh as areas we are both familiar with. As it happens, we have both moved house recently, and in the course of house-hunting we've used the [Scottish Index of Multiple Deprivation](https://simd.scot), a useful resource that combines socio-economic measures including figures related to income, housing, crime into a single deprivation index. Since both this and the co-benefits data is available at the level of quite small areas, we decided to incorporate the SIMD data to gain insight into how co-benefits are distributed across socio-economic brackets. Perhaps climate-change mitigation actions could help level the playing field. Or will they magnify existing inequalities? To skip to our final entry, click [here]({{ "/images/DLDVC/poster.pdf" | relative_url }}).
 
 
 ### Data
@@ -25,9 +25,9 @@ The co-benefit data was provided by the Data Lab, with individual projections fo
 
 We could then plot, for example, a heatmap of total per capita co-benefits, or a heatmap of SIMD ranks. Here they are for Fife.
 
-![Fife heatmaps](/images/DLDVC/Fife.png)
+![Fife heatmaps]({{ "/images/DLDVC/Fife.png" | relative_url }})
 
-It would be reasonable to ask whether the projected co-benefits are correlated with socio-economic bracket. From the following scatter plots we can see that there is some relationship, but it is not a straightforward positive correlation. ![Scatter plots](/images/DLDVC/scatters.png)
+It would be reasonable to ask whether the projected co-benefits are correlated with socio-economic bracket. From the following scatter plots we can see that there is some relationship, but it is not a straightforward positive correlation. ![Scatter plots]({{ "/images/DLDVC/scatters.png" | relative_url }})
 The higher socio-economic bracket an individual is in, the higher the ceiling on their total co-benefit. Note that the minimum possible co-benefit is almost uniform across SIMD ranks. Disaggregating across the 11 different co-benefits is also interesting. For example, in Fife, the dampness co-benefit (that is, benefits from reductions in damp housing, reflected in improved health and wellbeing) seems to be negatively correlated with SIMD rank. This correlation disappears at the Scotland level. Regional effects like this could certainly be interesting to explore more.
 
 To experiment with our code yourself, launch the binder: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/aevetts/notebooks/HEAD?urlpath=%2Fdoc%2Ftree%2FDLDVC.ipynb)
@@ -38,9 +38,9 @@ We wanted some way to combine the total per-capita co-benefit value with the SIM
 
 $$\mathrm{RNIC} = \log\left(\frac{\text{total per-capita co-benefit}}{\text{SIMD rank}}\right).$$
 
-The log was added simply to make the values fall closer to a linear function so that they are more easily comparable, especially on heatmaps. It should be emphasised that RNIC is purely qualitative and not necessarily backed up by strong theory. Nevertheless, it allows us to compare very different regions of Scotland, and what co-benefits climate action might bring. By way of an example, here are RNIC heatmaps for Glasgow and neighbouring North Lanarkshire, indicating that even allowing for differing socio-economic conditions, areas of Glasgow stand to benefit more from climate action. To read a more thorough discussion, see our [poster](/images/DLDVC/poster.pdf)!
+The log was added simply to make the values fall closer to a linear function so that they are more easily comparable, especially on heatmaps. It should be emphasised that RNIC is purely qualitative and not necessarily backed up by strong theory. Nevertheless, it allows us to compare very different regions of Scotland, and what co-benefits climate action might bring. By way of an example, here are RNIC heatmaps for Glasgow and neighbouring North Lanarkshire, indicating that even allowing for differing socio-economic conditions, areas of Glasgow stand to benefit more from climate action. To read a more thorough discussion, see our [poster]({{ "/images/DLDVC/poster.pdf" | relative_url }})!
 
-![RNIC plots](/images/DLDVC/GlasgowLanark.png)
+![RNIC plots]({{ "/images/DLDVC/GlasgowLanark.png" | relative_url }})
 
 
 ### Result

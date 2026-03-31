@@ -1,7 +1,7 @@
 ---
-layout: post
+layout: single
 title:  "A (car) crash course in embeddings"
-categories: jekyll update
+permalink: /makemodel/
 ---
 
 
@@ -31,7 +31,7 @@ A cool way to approach this kind of categorical data with many options is via *e
 
 We can actually have a look at this configuration. In my new and improved price predictor, the models are mapped to a 10 dimensional space. Visualising 10 spatial dimensions is hard (at least for me), but we can do some **Principle Component Analysis** (thanks Gemini) and plot the so-called 'semantic space' of car models in 2 dimensions. Its hard to say what the dimensions really mean, but we do see that brands occupying a similar market niche are close to each other.
 
-![Semantic space of car models](/images/cars/semanticmodels.png)
+![Semantic space of car models]({{ "/images/cars/semanticmodels.png" | relative_url }})
 
 
 <!-- Embedding also gives a reasonably elegant method of dealing with missing data. We always make sure that there is an embedding of 'unknown'. So if we want to predict the price of some car which we know is a 2015 Ford that's done 12345 miles, but we don't know the model, the NN will give an  -->
@@ -79,7 +79,7 @@ You can see the code on [github](https://github.com/aevetts/cars/blob/main/blog_
 #### Results
 Testing the trained model on the reserved set of test data, we get the following graphs.
 
-![Evaluating the model](/images/cars/fullmodelevalplots.png)
+![Evaluating the model]({{ "/images/cars/fullmodelevalplots.png" | relative_url }})
 
 For the most part, I think we've got a pretty good predictor here. The distribution of errors is very tall and thin, meaning the vast majority of errors are small. We just have a small number of really very outlying outliers.
 
