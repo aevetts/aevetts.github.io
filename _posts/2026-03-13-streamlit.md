@@ -14,7 +14,7 @@ permalink: /streamlit/
 
 
 <!-- ### Intro -->
-In the last wee while I've been working on setting up a proper user interface for my [car price predictor](https://aevetts.github.io/jekyll/update/2026/02/18/make-model.html), using [Streamlit](https://streamlit.io/). In this post I'll chat a bit about Streamlit, classes and objects, and the structure of my code. To just see the app already, click [here](https://alexscarpricepredictor.streamlit.app/). Read on to find out what's happening begin the scenes.
+In the last wee while I've been working on setting up a proper user interface for my [car price predictor]({% post_url 2026-02-18-make-model %}), using [Streamlit](https://streamlit.io/). In this post I'll chat a bit about Streamlit, classes and objects, and the structure of my code. To just see the app already, click [here](https://alexscarpricepredictor.streamlit.app/). Read on to find out what's happening begin the scenes.
 
 ![app]({{ "/images/cars/appscreenshot.png" | relative_url }})
 
