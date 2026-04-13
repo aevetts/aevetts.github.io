@@ -57,3 +57,22 @@ p > code, li > code {
 .page__footer-follow .social-icons .fa-rss {
   display: none !important;
 }
+
+
+/* Specific styling for the Talks page */
+.talks-page #main article.page .page__content {
+  ul, li {
+    font-size: 0.75rem !important; 
+    line-height: 1.3 !important;
+    margin-bottom: 0.6em;
+  }
+
+  // h4 {
+  //   font-size: 0.9rem !important;
+  //   margin-top: 1.5em;
+  //   margin-bottom: 0.5em;
+  //   text-transform: uppercase;
+  //   letter-spacing: 1px;
+  //   color: #555;
+  // }
+}

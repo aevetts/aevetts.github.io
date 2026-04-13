@@ -7,5 +7,7 @@ main:
   #   url: /about/
   - title: "Research"
     url: /research/
+  - title: "Talks"
+    url: /talks/
   - title: "CV"
     url: /cv/
