@@ -63,7 +63,7 @@ classes: talks-page
 
 - London Mathematical Society graduate lecture series (via the NBGGT network). Two lectures on *Introduction to Growth in Groups*.  Recordings available on [YouTube](https://www.youtube.com/playlist?list=PLsDn5JyJXoYIDGybZpu_yKNeUYU2PfLkF).
 - Geometry and Algebra on Groups Seminar, Universität Wien, 27 October 2020\
-*Conjugacy growth of finitely generated groups* [recordings: [introductory talk](/assets/collab-recording_introductory.mp4), [research talk](/assets/collab-recording_research.mp4)]
+*Conjugacy growth of finitely generated groups* [recordings: [introductory talk](https://drive.google.com/file/d/1wTf7zGag4shKifQ0LmyITGCVnd0tDQlA/view), [research talk](https://drive.google.com/file/d/1LaxwPpCnu25yFUxlrot-r5YI0x4QQvdp/view)]
 
 #### 2019
 
