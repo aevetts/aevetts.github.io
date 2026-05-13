@@ -3,11 +3,11 @@ main:
     url: /
   - title: "Blog"
     url: /blog/
-  # - title: "About"
-  #   url: /about/
   - title: "Research"
     url: /research/
   - title: "Talks"
     url: /talks/
+  - title: "Apps"
+    url: /apps/
   - title: "CV"
     url: /cv/
