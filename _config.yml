@@ -80,6 +80,10 @@ author:
       url: "https://orcid.org/0000-0002-2252-8661"
 
 
+markdown: kramdown
+kramdown:
+  input: GFM # GitHub Flavored Markdown
+  math_engine: null # Disables Kramdown's default MathJax wrapper
 
 footer:
   links:
