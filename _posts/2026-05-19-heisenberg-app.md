@@ -52,7 +52,7 @@ and if we agree that every element is given by a triple, and every triple define
 ### Calculation
 The point of this second point of view on $H_1$ is that matrix multiplication is very well-understood, and implemented efficiently in Python (and everywhere else). Our piece of code will take as input any word over the generators (and their inverses), find the matrix representation of the element by multiplying the matrix for each letter in turn, then convert back into a normal form word for the output.
 
-For reasons explained in a future post, we use sympy's ImmutableMatrix and set up each generator as a matrix. For ease of typing and reading, we'll use capitals to denote inverses, writing $A$ for $a^{-1}$ etc. We also set up a dictionary to convert the generators letters $\\{a,A,b,B,c,C\}$ to the appropriate matrix.
+For reasons explained in a future post, we use sympy's ImmutableMatrix and set up each generator as a matrix. For ease of typing and reading, we'll use capitals to denote inverses, writing $A$ for $a^{-1}$ etc. We also set up a dictionary to convert the generators letters $\\{a,A,b,B,c,C\\}$ to the appropriate matrix.
 
 ```python
 from sympy import ImmutableMatrix
